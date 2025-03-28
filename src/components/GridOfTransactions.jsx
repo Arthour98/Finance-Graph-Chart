@@ -16,7 +16,7 @@ return(
                 <TransactionForm />
             </div>
 
-            <div className="list-col flex-1/1  h-1/2 overflow-y-scroll">
+            <div className="list-col flex-1/1  h-1/2 overflow-y-scroll scrollbar-hide">
                 <TransactionList/>
             </div>
         </div>

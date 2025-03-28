@@ -1,29 +1,24 @@
-import React,{useRef} from "react";
+import React,{useRef,useState,useEffect} from "react";
 import { useTransactions } from "./TransactionContext";
 
 
 const TransactionList=()=>
 {
 const {transactions}=useTransactions();
+const [filterMap,setFilterMap]=useState(transactions);
 const months=["december","january","february","march","april",
     "may","june","july","august","semptember","octomber","november"];
-
 const selectRef=useRef(null);
 
 const filterTransactions=(month)=>
 {
     month=selectRef.current.value;
-
-    transactions.filter(transaction=>
+    let filteredTransMap=transactions.filter(transaction=>
     {
-        return transaction.month=month
-    }
-    )
+    return transaction.month===month;
+    })    
+    month===""?setFilterMap(transactions): setFilterMap(filteredTransMap);
 }
-
-
-
-
 
 return(
     <>
@@ -31,6 +26,7 @@ return(
 <select onChange={filterTransactions}
 ref={selectRef}
 className="ml-4 capitalize">
+    <option value="">ALL</option>
 {months.map((month,index)=>
     {
         return <option key={index} value={month}>{month}</option>
@@ -50,17 +46,17 @@ className="ml-4 capitalize">
             </tr>
         </thead>
         <tbody>
-        {transactions&&transactions.map((transaction,index)=>
+        {filterMap&&filterMap.map((transaction,index)=>
         {
             return <tr key={index}>
-                <td className="border border-gray-800 ">
+                <td className="border border-gray-800 text-center capitalize ">
                     <p className="font-bold">{transaction.month}</p>
                 </td>
                 <td className="border border-gray-800 ">
                     <p className="w-[20ch] break-words">{transaction.description}</p>
                 </td>
                 <td className="border border-gray-600">
-                    <p className="text-center">{transaction.value}</p>
+                    <p className="text-center">{parseFloat(transaction.value)}$</p>
                     </td>
                 <td className="">
                     <div className="flex justify-center">

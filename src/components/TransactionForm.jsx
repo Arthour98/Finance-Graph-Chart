@@ -37,6 +37,7 @@ const TransactionForm = () => {
        ref={valueRef}
         placeholder="Add The value"
         className="outline-blue-400 border"
+        step="any"
       />
       <select ref={selectRef}>
         {months.map((month,index)=>
