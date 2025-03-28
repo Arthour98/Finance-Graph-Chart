@@ -8,7 +8,7 @@ function App() {
 
   return (
 <>
-    <div className='flex bg-amber-300  border'>
+    <div className='flex justify-center h-[50vh] border'>
     <TransactionGrid/>
     </div>
 </>
