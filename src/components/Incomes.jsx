@@ -1,23 +1,18 @@
 import React,{useState,useRef,useMemo}from "react";
+import { useTransactions } from "./TransactionContext";
 
 const IncomeGrid=()=>
 {
-    const [income,setIncome]=useState(0);
+    const {income,addIncome}=useTransactions();
     const incomeRef=useRef(null);
    
     const handleIncome=(e)=>
     {
         e.preventDefault();
         let newIncome=incomeRef.current.value;
-        localStorage.setItem("income",JSON.stringify(newIncome));
-        setIncome(newIncome);
+        addIncome(newIncome);
+        incomeRef.current.value="";
     }
-
-    const currIncome=useMemo(()=>
-    {
-     const res=localStorage.getItem("income");
-     return JSON.parse(res);
-    },[income]);
 
     return(
         <>
@@ -31,7 +26,7 @@ const IncomeGrid=()=>
                 <input type="submit" 
                 className="bg-blue-600 rounded-3xl py-2 px-4 cursor-pointer" value="submit"/>
             </form>
-            <p className="font-extrabold text-3xl underline" id="income-value">Monthly Income : {currIncome}$</p>
+            <p className="font-extrabold text-3xl underline" id="income-value">Monthly Income : {income}$</p>
         </div>
         </>
     )

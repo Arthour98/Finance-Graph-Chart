@@ -1,66 +1,50 @@
-import {useState,useEffect, useMemo} from "react";
+import {useMemo} from "react";
 import Pie from "./PieChart";
+import { useTransactions } from "./TransactionContext";
 
 
 const GraphGrid=()=>
 {
-const[income,setIncome]=useState(0);
-const [transactions,setTransactions]=useState([]);
+const{transactions,income}=useTransactions();
 
 
-
-useEffect(()=>
+const labels=useMemo((newLabels)=>
 {
-const savedIncome=localStorage.getItem("income");
-const parsedIncome=savedIncome?JSON.parse(savedIncome):0;
-console.log("parse income is :"+ parsedIncome)
-setIncome(parsedIncome);
-},[income]);
-
-
-useEffect(()=>
-{
-const transactions=localStorage.getItem("transactions");
-const parsedTransactions=transactions?JSON.parse(transactions):[];
-setTransactions(parsedTransactions);
-},[]);
-
-const labels=useMemo(()=>
-{
-const newLabels=[...transactions.map(t=>t.description),"income"];
+newLabels=[...transactions.map(t=>t.description),"income"];
 return newLabels;
-},[transactions]);
+},[transactions,income]);
 
-const values=useMemo(()=>
+const values=useMemo((newValues)=>
 {
-const newValues=[...transactions.map(t=>t.value),income];
+ newValues=[...transactions.map(t=>t.value),Number(income)];
 return newValues;
-},[transactions]);
+},[transactions,income]);
 
 
-const data=useMemo(()=>
+const data=
 {
-return {
     labels:labels,
     datasets:[{
         label:"transaction",
         data:values,
-        backgroundColor:labels.map(()=>
+        backgroundColor:labels.map((l)=>l!=="income"?
             `rgb(${Math.floor(Math.random()*255)},
             ${Math.floor(Math.random()*255)},
-            ${Math.floor(Math.random()*255)})`
-        )
+            ${Math.floor(Math.random()*255)})`:`rgb(255,0,0)`
+        ),
+        borderColor:`cyan`,
+        borderWidth:4
     }]
 };
-},[transactions]);
+
 
 const options=
 {
-    responsive: true,
-    plugins: {
-      title:  { display:true, text: 'Transactions' },
-    }
-  };
+responsive: true,
+plugins: {
+title:  { display:true, text: 'Transactions' },
+}
+};
 
 return(
     <Pie data={data} options={options} 

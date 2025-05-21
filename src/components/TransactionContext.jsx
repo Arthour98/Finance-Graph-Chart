@@ -4,14 +4,26 @@ const TransactionContext=createContext();
 export const TransactionProvider=({children})=>
 {
 const[transactions,setTransactions]=useState([])
-
-
+const [income,setIncome]=useState("");
 
 useEffect(()=>
 {
 const savedTransactions=localStorage.getItem("transactions");
 setTransactions(savedTransactions ?JSON.parse(savedTransactions):[])
-},[])
+},[]);
+
+useEffect(()=>
+{
+const fetchedIncome=localStorage.getItem("income");
+const newIncome=JSON.parse(fetchedIncome);
+setIncome(newIncome);
+},[]);
+
+const addIncome=(newIncome)=>
+{
+localStorage.setItem("income",JSON.stringify(newIncome));
+setIncome(newIncome);
+}
 
 const addTransaction=(transaction={id,description,value,month})=>
 {
@@ -30,7 +42,7 @@ const deleteTransaction=(transactionId)=>
 
 
 return(
-    <TransactionContext.Provider value={{transactions,addTransaction,deleteTransaction}}>
+    <TransactionContext.Provider value={{transactions,addTransaction,deleteTransaction,income,addIncome}}>
      {children}
     </TransactionContext.Provider>
 )}

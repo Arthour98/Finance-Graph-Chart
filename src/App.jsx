@@ -6,12 +6,14 @@ import './index.css'
 import "./components/Graph.jsx";
 import GraphGrid from './components/Graph.jsx';
 import './components/chart'; 
+import { TransactionProvider } from "./components/TransactionContext";
 
 function App() {
 
 
   return (
 <>
+<TransactionProvider>
     <div className='flex justify-center h-[50vh]   bg-sky-300 gap-4'>
       <IncomeGrid/>
     <TransactionGrid/>
@@ -24,6 +26,7 @@ function App() {
       <GraphGrid/>
       </div>
     </div>
+    </TransactionProvider>
 </>
   )
 }

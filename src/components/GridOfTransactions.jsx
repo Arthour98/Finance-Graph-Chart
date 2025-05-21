@@ -1,4 +1,4 @@
-import { TransactionProvider, useTransactions } from "./TransactionContext"
+
 import TransactionForm from "./TransactionForm"
 import TransactionList from "./TransactionList";
 
@@ -10,7 +10,6 @@ const TransactionGrid=()=>
     
 return(
     <>
-    <TransactionProvider>
         <div className="transaction-container flex basis-1/3  items-center justify-center gap-40">
             <div className="form-col flex flex-1/2  justify-end">
                 <TransactionForm />
@@ -20,7 +19,6 @@ return(
                 <TransactionList/>
             </div>
         </div>
-    </TransactionProvider>
     </>
 )
 }
