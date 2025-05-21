@@ -1,20 +1,28 @@
-import React, {useRef } from "react";
+import React, { useRef } from "react";
 import { useTransactions } from "./TransactionContext";
 
 const TransactionForm = () => {
-  const { addTransaction } = useTransactions();
+  const { addTransaction,transactions } = useTransactions();
     let descriptionRef=useRef(null);
     let valueRef=useRef(null);
     let selectRef=useRef(null);
 
+
+ 
+
+
   const submitTransaction = (event) => {
+ 
     event.preventDefault();
+    
+   
+
     let description=descriptionRef.current.value;
     let value=valueRef.current.value;
-    let month=selectRef.current.value;
-    let newTransaction={description,value:Number(value),month}
+    let month=selectRef.current.value; 
+    let id=transactions.length>0?transactions[transactions.length-1]["id"]+1:1;
+    let newTransaction={id,description,value:Number(value),month}
     addTransaction(newTransaction);
-
     descriptionRef.current.value="";
     valueRef.current.value="";
     selectRef.current,value="";
@@ -39,7 +47,7 @@ const TransactionForm = () => {
         className="outline-blue-400 border"
         step="any"
       />
-      <select ref={selectRef}>
+      <select className="shadow-xl cursor-pointer" ref={selectRef}>
         {months.map((month,index)=>
           {
            return <option key={index} value={month}>{month}</option>

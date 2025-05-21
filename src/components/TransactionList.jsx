@@ -1,31 +1,29 @@
-import React,{useRef,useState,useEffect} from "react";
+import React,{useState} from "react";
 import { useTransactions } from "./TransactionContext";
 
 
 const TransactionList=()=>
 {
-const {transactions}=useTransactions();
-const [filterMap,setFilterMap]=useState(transactions);
+const {deleteTransaction,transactions}=useTransactions();
+const [filter,setFilter]=useState("");
 const months=["december","january","february","march","april",
     "may","june","july","august","semptember","octomber","november"];
-const selectRef=useRef(null);
+console.log(transactions)
 
-const filterTransactions=(month)=>
+const handleFilter=(e)=>
 {
-    month=selectRef.current.value;
-    let filteredTransMap=transactions.filter(transaction=>
-    {
-    return transaction.month===month;
-    })    
-    month===""?setFilterMap(transactions): setFilterMap(filteredTransMap);
+setFilter(e.target.value);
+localStorage.setItem("month",JSON.stringify(e.target.value));
 }
+const filteredTransactions=filter?transactions.filter(transaction => transaction.month === filter):transactions;
+
+
 
 return(
     <>
 <label>Select Month:</label>
-<select onChange={filterTransactions}
-ref={selectRef}
-className="ml-4 capitalize">
+<select onChange={handleFilter}
+className="ml-4 capitalize shadow-xl cursor-pointer">
     <option value="">ALL</option>
 {months.map((month,index)=>
     {
@@ -46,7 +44,7 @@ className="ml-4 capitalize">
             </tr>
         </thead>
         <tbody>
-        {filterMap&&filterMap.map((transaction,index)=>
+        {filteredTransactions.map((transaction,index)=>
         {
             return <tr key={index}>
                 <td className="border border-gray-800 text-center capitalize ">
@@ -65,7 +63,8 @@ className="ml-4 capitalize">
                     </td>
                 <td className=" ">
                     <div className="flex justify-center">
-                    <button className="bg-red-500 cursor-pointer py-2 px-4 rounded-4xl ">Delete</button>
+                    <button className="bg-red-500 cursor-pointer py-2 px-4 rounded-4xl "
+                    onClick={()=>deleteTransaction(transaction.id)}>Delete</button>
                     </div>
                     </td>
             </tr>

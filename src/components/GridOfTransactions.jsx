@@ -11,7 +11,7 @@ const TransactionGrid=()=>
 return(
     <>
     <TransactionProvider>
-        <div className="transaction-container flex basis-1/2 border items-center justify-center gap-40">
+        <div className="transaction-container flex basis-1/3  items-center justify-center gap-40">
             <div className="form-col flex flex-1/2  justify-end">
                 <TransactionForm />
             </div>

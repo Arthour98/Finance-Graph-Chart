@@ -3,24 +3,34 @@ const TransactionContext=createContext();
 
 export const TransactionProvider=({children})=>
 {
-const[transactions,setTransactions]=useState(()=>
-{
-    const savedTransaction=localStorage.getItem("transactions");
-    return savedTransaction?JSON.parse(savedTransaction):[];
-});
+const[transactions,setTransactions]=useState([])
+
+
 
 useEffect(()=>
 {
-    localStorage.setItem("transactions",JSON.stringify(transactions));
-},[transactions])
+const savedTransactions=localStorage.getItem("transactions");
+setTransactions(savedTransactions ?JSON.parse(savedTransactions):[])
+},[])
 
-const addTransaction=(transaction)=>
+const addTransaction=(transaction={id,description,value,month})=>
 {
-setTransactions((transactions)=>[...transactions,transaction]);
+const newTransactions=[...transactions,transaction];
+localStorage.setItem("transactions",JSON.stringify(newTransactions));
+setTransactions(newTransactions);
 }
 
+const deleteTransaction=(transactionId)=>
+{
+       const  newTransactions=transactions.filter(transaction=>transaction.id!==transactionId);
+       localStorage.setItem("transactions", JSON.stringify(newTransactions));
+       setTransactions(newTransactions);
+}
+
+
+
 return(
-    <TransactionContext.Provider value={{transactions,addTransaction}}>
+    <TransactionContext.Provider value={{transactions,addTransaction,deleteTransaction}}>
      {children}
     </TransactionContext.Provider>
 )}
