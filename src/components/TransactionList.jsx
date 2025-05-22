@@ -4,30 +4,27 @@ import { useTransactions } from "./TransactionContext";
 
 const TransactionList=()=>
 {
-const {deleteTransaction,transactions}=useTransactions();
-const [filter,setFilter]=useState("");
-const months=["december","january","february","march","april",
+const {deleteTransaction,transactions,month,selectMonth}=useTransactions();
+const months=["all","december","january","february","march","april",
     "may","june","july","august","semptember","octomber","november"];
-console.log(transactions)
+
 
 const handleFilter=(e)=>
 {
-setFilter(e.target.value);
-localStorage.setItem("month",JSON.stringify(e.target.value));
+selectMonth(e.target.value);
 }
-const filteredTransactions=filter?transactions.filter(transaction => transaction.month === filter):transactions;
-
+const filteredTransactions=month?transactions.filter(transaction => transaction.month === month):transactions;
+console.log(month);
 
 
 return(
     <>
 <label>Select Month:</label>
-<select onChange={handleFilter}
+<select onInput={handleFilter}
 className="ml-4 capitalize shadow-xl cursor-pointer">
-    <option value="">ALL</option>
 {months.map((month,index)=>
     {
-        return <option key={index} value={month}>{month}</option>
+        return <option className="text-black" key={index} value={month}>{month}</option>
     }
 )}
 </select>

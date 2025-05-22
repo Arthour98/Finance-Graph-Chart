@@ -5,6 +5,7 @@ export const TransactionProvider=({children})=>
 {
 const[transactions,setTransactions]=useState([])
 const [income,setIncome]=useState("");
+const [month,setMonth]=useState("");
 
 useEffect(()=>
 {
@@ -18,6 +19,11 @@ const fetchedIncome=localStorage.getItem("income");
 const newIncome=JSON.parse(fetchedIncome);
 setIncome(newIncome);
 },[]);
+
+const selectMonth=(newMonth)=>
+{
+setMonth(newMonth);
+}
 
 const addIncome=(newIncome)=>
 {
@@ -42,8 +48,10 @@ const deleteTransaction=(transactionId)=>
 
 
 return(
-    <TransactionContext.Provider value={{transactions,addTransaction,deleteTransaction,income,addIncome}}>
-     {children}
+    <TransactionContext.Provider value=
+    {{transactions,addTransaction,deleteTransaction,
+    income,addIncome,month,selectMonth}}>
+    {children}
     </TransactionContext.Provider>
 )}
 

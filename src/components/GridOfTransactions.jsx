@@ -10,9 +10,11 @@ const TransactionGrid=()=>
     
 return(
     <>
-        <div className="transaction-container flex basis-1/3  items-center justify-center gap-40">
-            <div className="form-col flex flex-1/2  justify-end">
-                <TransactionForm />
+        <div className="transaction-container flex flex-col basis-1/3 shadow-2xl
+         shadow-green-500 p-4 rounded-xl justify-center gap-20
+         lg:flex-row">
+            <div className="form-col flex flex-1/2 lg:basis-1">
+                <TransactionForm/>
             </div>
 
             <div className="list-col flex-1/1  h-1/2 overflow-y-scroll scrollbar-hide">

@@ -28,6 +28,7 @@ export default function Pie({data,options})
 return(<canvas ref={canvasRef}
          data={data}
           options={options}
+          className="w-full h-full"
 />)
     
 }

@@ -16,7 +16,7 @@ const IncomeGrid=()=>
 
     return(
         <>
-        <div className="container flex basis-1/3 items-center justify-center gap-8 ">
+        <div className="container flex flex-col lg:flex-row basis-1/3 items-center justify-center gap-8 ">
             <form className="flex gap-4 flex-col"onSubmit={handleIncome}>
                 <label>
                     State montly incomes

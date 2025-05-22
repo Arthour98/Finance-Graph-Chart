@@ -50,7 +50,7 @@ const TransactionForm = () => {
       <select className="shadow-xl cursor-pointer" ref={selectRef}>
         {months.map((month,index)=>
           {
-           return <option key={index} value={month}>{month}</option>
+           return <option className="text-black" key={index} value={month}>{month}</option>
           }
         )}
       </select>

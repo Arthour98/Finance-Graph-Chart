@@ -3,24 +3,24 @@ import Pie from "./PieChart";
 import { useTransactions } from "./TransactionContext";
 
 
-const GraphGrid=()=>
+const GraphMonth=()=>
 {
-const{transactions,income}=useTransactions();
+const{transactions,income,month}=useTransactions();
 
 
-const labels=useMemo((newLabels)=>
+const labels=useMemo(()=>
 {
-newLabels=[...transactions.map(t=>t.description),"income"];
+const newLabels=[...transactions.filter(t=>t.month===month).map(t=>t.description),"income"];
 return newLabels;
-},[transactions,income]);
+},[transactions,income,month]);
 
-const values=useMemo((newValues)=>
+const values=useMemo(()=>
 {
- newValues=[...transactions.map(t=>t.value),Number(income)];
+ const newValues=[...transactions.filter(t=>t.month===month).map(t=>t.value),Number(income)];
 return newValues;
-},[transactions,income]);
+},[transactions,income,month]);
 
-
+console.log(labels,values);
 const data=
 {
     labels:labels,
@@ -42,15 +42,14 @@ const options=
 {
 responsive: true,
 plugins: {
-title:  { display:true, text: 'Transactions' },
+title:  { display:true, text: 'Transactions : Month' },
 }
 };
 
 return(
-    <Pie data={data} options={options} 
-    className="basis-1 flex border-1 border-black bg-amber-200"/>
+    <Pie data={data} options={options} className="border border-black"/>
 )
 
 }
 
-export default GraphGrid;
+export default GraphMonth;
