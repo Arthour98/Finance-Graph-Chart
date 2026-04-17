@@ -13,15 +13,17 @@ function App() {
 
   return (
     <TransactionProvider>
-      <div className="min-h-[100vh] max-h-[100%] h-[100vh]
+      <div className="min-h-[200vh] max-h-[100%] h-[200vh]
+      lg:min-h-[100vh]  lg:h-[100vh]
       min-w-full max-w-full w-full bg-black flex flex-col overflow-hidden">
-        <div className="flex-1 min-h-[50%] max-h-[50%]
-         flex flex-col border border-red-500 lg:flex-row 
+        <div className="flex-1 !min-h-[50%] max-h-auto
+         flex flex-col  lg:flex-row 
         gap-2 md:gap-4 p-2 md:p-4 text-white ">
-          <div className="flex-1 min-w-[50%] flex-shrink-1">
+          <div className="flex-1 min-w-[50%]  !min-h-[30%] flex-shrink-1">
             <IncomeGrid />
           </div>
-          <div className="flex-1 min-w-[50%] flex-shrink-1 overflow-hidden">
+          <div className="flex-1 min-w-[50%] !min-h-[70%] flex-shrink-1 overflow-y-scroll scrollbar-hide
+             lg:overflow-y-hidden">
             <TransactionGrid />
           </div>
         </div>

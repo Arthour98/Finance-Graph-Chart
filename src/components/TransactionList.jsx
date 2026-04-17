@@ -16,8 +16,8 @@ const TransactionList = () => {
 
 
     return (
-        <div className="min-h-[50%] max-h-[50%] border border-orange-500
-         w-full flex flex-col overflow-hidden">
+        <div className="min-h-[50%] max-h-[50%] 
+         w-full flex flex-col">
             <div className="sticky top-0 bg-black p-2 md:p-4 flex flex-col sm:flex-row gap-2 sm:gap-4">
                 <label className="text-sm md:text-base">Select Month:</label>
                 <select onInput={handleFilter}
@@ -31,7 +31,7 @@ const TransactionList = () => {
             <div className="flex-1 w-full overflow-y-scroll scrollbar-hide">
                 {/* Desktop Table View */}
                 <table className="hidden md:table border-separate border-gray-600
-                w-full border-spacing-y-2 md:border-spacing-y-4 table-auto shadow-md ">
+                w-full border-spacing-y-2 md:border-spacing-y-2 table-auto shadow-md ">
                     <thead className="sticky top-0 bg-black  ">
                         <tr>
                             <th className="border border-gray-600 p-2 text-xs md:text-sm">Month</th>
