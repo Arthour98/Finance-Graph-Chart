@@ -5,6 +5,7 @@ export const TransactionProvider = ({ children }) => {
     const [transactions, setTransactions] = useState([])
     const [income, setIncome] = useState("");
     const [month, setMonth] = useState("");
+    const [selTransaction, setSelTransaction] = useState([]);
 
     useEffect(() => {
         const savedTransactions = localStorage.getItem("transactions");
@@ -19,6 +20,7 @@ export const TransactionProvider = ({ children }) => {
 
     const selectMonth = (newMonth) => {
         setMonth(newMonth);
+        setSelTransaction([])
     }
 
     const addIncome = (newIncome) => {
@@ -38,11 +40,10 @@ export const TransactionProvider = ({ children }) => {
         setTransactions(newTransactions);
     }
 
-    const [selTransaction, setSelTransaction] = useState([]);
 
     const inspectTransaction = (id) => {
         let list = [...transactions];
-        let sel = list?.filter(t => t.id);
+        let sel = list?.filter(t => t.id == id);
         setSelTransaction(sel);
     }
 
@@ -50,7 +51,7 @@ export const TransactionProvider = ({ children }) => {
         <TransactionContext.Provider value=
             {{
                 transactions, addTransaction, deleteTransaction,
-                income, addIncome, month, selectMonth
+                income, addIncome, month, selectMonth, inspectTransaction, selTransaction, setSelTransaction
             }}>
             {children}
         </TransactionContext.Provider>

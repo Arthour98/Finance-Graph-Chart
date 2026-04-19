@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTransactions } from "./TransactionContext";
 
 
 const TransactionList = () => {
-    const { deleteTransaction, transactions, month, selectMonth } = useTransactions();
+    const { deleteTransaction, transactions, month, selectMonth, inspectTransaction,
+        selTransaction, setSelTransaction } = useTransactions();
     const months = ["all", "december", "january", "february", "march", "april",
         "may", "june", "july", "august", "semptember", "octomber", "november"];
+
+
 
 
     const handleFilter = (e) => {
@@ -16,7 +19,7 @@ const TransactionList = () => {
 
 
     return (
-        <div className="min-h-[50%] max-h-[50%] 
+        <div className="min-h-[80%] max-h-[50%] 
          w-full flex flex-col">
             <div className="sticky top-0 bg-black p-2 md:p-4 flex flex-col sm:flex-row gap-2 sm:gap-4">
                 <label className="text-sm md:text-base">Select Month:</label>
@@ -55,8 +58,19 @@ const TransactionList = () => {
                                 </td>
                                 <td className="p-1">
                                     <div className="flex justify-center">
-                                        <button className="bg-amber-500 cursor-pointer py-1 px-3 md:py-2 md:px-4 rounded-4xl text-xs md:text-sm">
-                                            Inspect</button>
+                                        <button
+                                            onClick={() => selTransaction?.length > 0 && selTransaction[0]?.id == transaction?.id ?
+                                                setSelTransaction([])
+                                                :
+                                                inspectTransaction(transaction?.id)}
+                                            className={`${selTransaction?.length > 0 && selTransaction[0]?.id == transaction?.id ?
+                                                `bg-cyan-500` : `bg-amber-500`} cursor-pointer min-w-[60%] py-1 px-3 md:py-2
+                                             md:px-4 rounded-4xl text-xs md:text-sm`}>
+                                            {
+                                                selTransaction?.length > 0 && selTransaction[0]?.id == transaction?.id ?
+                                                    "Clear" : "Inspect"
+                                            }
+                                        </button>
                                     </div>
                                 </td>
                                 <td className="p-1">
@@ -90,9 +104,20 @@ const TransactionList = () => {
                                     <p className="text-sm break-words">{transaction.description}</p>
                                 </div>
                                 <div className="flex gap-2 justify-center">
-                                    <button className="bg-amber-500 cursor-pointer py-1 px-3 rounded-4xl text-xs flex-1">
-                                        Inspect
+                                    <button
+                                        onClick={() => selTransaction?.length > 0 && selTransaction[0]?.id == transaction?.id ?
+                                            setSelTransaction([])
+                                            :
+                                            inspectTransaction(transaction?.id)}
+                                        className={`${selTransaction?.length > 0 && selTransaction[0]?.id == transaction?.id ?
+                                            `bg-cyan-500` : `bg-amber-500`} cursor-pointer min-w-[50%] py-1 px-3 md:py-2
+                                             md:px-4 rounded-4xl text-xs md:text-sm`}>
+                                        {
+                                            selTransaction?.length > 0 && selTransaction[0]?.id == transaction?.id ?
+                                                "Clear" : "Inspect"
+                                        }
                                     </button>
+
                                     <button className="bg-red-500 cursor-pointer py-1 px-3 rounded-4xl text-xs flex-1"
                                         onClick={() => deleteTransaction(transaction.id)}>
                                         Delete
@@ -103,7 +128,7 @@ const TransactionList = () => {
                     })}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 export default TransactionList;
