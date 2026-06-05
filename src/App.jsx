@@ -1,29 +1,32 @@
-
-import './App.css'
-import TransactionGrid from './components/GridOfTransactions';
-import IncomeGrid from './components/Incomes';
-import './index.css'
-import GraphMonth from './components/GraphMonth';
-import GraphYear from './components/GraphYear';
-import './components/chart';
+import "./App.css";
+import TransactionGrid from "./components/GridOfTransactions";
+import IncomeGrid from "./components/Incomes";
+import "./index.css";
+import GraphMonth from "./components/GraphMonth";
+import GraphYear from "./components/GraphYear";
+import "./components/chart";
 import { TransactionProvider } from "./components/TransactionContext";
 
 function App() {
-
-
   return (
     <TransactionProvider>
-      <div className="min-h-[200vh] max-h-[100%] h-[200vh]
+      <div
+        className="min-h-[200vh] max-h-[100%] h-[200vh]
       lg:min-h-[100vh]  lg:h-[100vh]
-      min-w-full max-w-full w-full bg-black flex flex-col overflow-hidden">
-        <div className="flex-1 !min-h-[50%] max-h-auto
+      min-w-full max-w-full w-full bg-black flex flex-col overflow-hidden"
+      >
+        <div
+          className="flex-1 !min-h-[50%] max-h-auto
          flex flex-col  lg:flex-row 
-        gap-2 md:gap-4 p-2 md:p-4 text-white ">
+        gap-2 md:gap-4 p-2 md:p-4 text-white "
+        >
           <div className="flex-1 min-w-[50%]  !min-h-[30%] flex-shrink-1">
             <IncomeGrid />
           </div>
-          <div className="flex-1 min-w-[50%] !min-h-[70%] flex-shrink-1 overflow-y-scroll scrollbar-hide
-             lg:overflow-y-hidden">
+          <div
+            className="flex-1 min-w-[50%] !min-h-[70%] flex-shrink-1 overflow-y-scroll scrollbar-hide
+             lg:overflow-y-hidden"
+          >
             <TransactionGrid />
           </div>
         </div>
@@ -37,8 +40,7 @@ function App() {
         </div>
       </div>
     </TransactionProvider>
-
-  )
+  );
 }
 
-export default App
+export default App;
