@@ -1,18 +1,18 @@
-# Finance Graph 💰📊
+# Finance Graph 
 
 A modern, responsive personal finance tracker application built with React. Easily manage your income, track expenses, and visualize your financial data with interactive monthly and yearly charts.
 
-## Features ✨
+## Features 
 
-- 📝 **Add Transactions** - Record income and expenses with descriptions and amounts
-- 💡 **Income Management** - Set and update your income amount
-- 📅 **Monthly & Yearly Graphs** - Visualize your spending patterns over time with interactive charts
-- 📋 **Transaction Grid** - View all transactions in an organized table format
-- 💾 **Local Storage** - All data is saved locally in your browser (no server required)
-- 📱 **Fully Responsive** - Works seamlessly on desktop, tablet, and mobile devices
-- 🎨 **Modern UI** - Clean, dark-themed interface with Tailwind CSS styling
+-  **Add Transactions** - Record income and expenses with descriptions and amounts
+-  **Income Management** - Set and update your income amount
+-  **Monthly & Yearly Graphs** - Visualize your spending patterns over time with interactive charts
+-  **Transaction Grid** - View all transactions in an organized table format
+-  **Local Storage** - All data is saved locally in your browser (no server required)
+-  **Fully Responsive** - Works seamlessly on desktop, tablet, and mobile devices
+-  **Modern UI** - Clean, dark-themed interface with Tailwind CSS styling
 
-## Tech Stack 🛠️
+## Tech Stack 
 
 - **React 19** - Modern UI library
 - **Vite** - Lightning-fast build tool and dev server
@@ -21,7 +21,7 @@ A modern, responsive personal finance tracker application built with React. Easi
 - **ESLint** - Code quality and consistency
 - **Prettier** - Code formatter
 
-## Installation 🚀
+## Installation 
 
 ### Prerequisites
 - Node.js (v16 or higher)
@@ -47,7 +47,7 @@ npm run dev
 
 The application will open at `http://localhost:5173`
 
-## Usage 📖
+## Usage 
 
 1. **Set Your Income** - Enter your monthly income in the Income section
 2. **Add Transactions** - Fill in the transaction form with:
@@ -57,7 +57,7 @@ The application will open at `http://localhost:5173`
 3. **View Analytics** - Check the monthly and yearly graphs to see your spending trends
 4. **Manage Transactions** - Delete transactions as needed from the transaction grid
 
-## Project Structure 📁
+## Project Structure 
 
 ```
 src/
@@ -77,7 +77,7 @@ src/
 └── index.css                     # Global styles
 ```
 
-## Available Scripts 📜
+## Available Scripts 
 
 - `npm run dev` - Start development server with hot reload
 - `npm run build` - Build for production
@@ -85,7 +85,7 @@ src/
 - `npm run lint` - Run ESLint to check code quality
 - `npm run format` - Format code with Prettier
 
-## How It Works 🔧
+## How It Works 
 
 The application uses **React Context API** for state management to handle:
 - Transactions (add, delete, filter by month)
@@ -95,7 +95,7 @@ The application uses **React Context API** for state management to handle:
 
 Data is persisted using **browser localStorage**, so your data remains even after closing the application.
 
-## Features in Detail 📌
+## Features in Detail 
 
 ### Transaction Management
 - Add unlimited transactions with custom descriptions and amounts
@@ -113,14 +113,14 @@ Data is persisted using **browser localStorage**, so your data remains even afte
 - Optimized layouts for all screen sizes
 - Smooth scrolling and touch-friendly interface
 
-## Browser Support 🌐
+## Browser Support 
 
 - Chrome (latest)
 - Firefox (latest)
 - Safari (latest)
 - Edge (latest)
 
-## Contributing 🤝
+## Contributing 
 
 Contributions are welcome! Feel free to:
 1. Fork the repository
@@ -129,11 +129,11 @@ Contributions are welcome! Feel free to:
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License 📄
+## License 
 
 This project is open source and available under the MIT License.
 
-## Future Enhancements 🚀
+## Future Enhancements 
 
 - [ ] Category-based expense tracking
 - [ ] Export data to CSV/PDF
@@ -142,10 +142,10 @@ This project is open source and available under the MIT License.
 - [ ] Dark/Light theme toggle
 - [ ] Multi-user support
 
-## Support 💬
+## Support 
 
 If you encounter any issues or have suggestions, please open an issue in the repository.
 
 ---
 
-**Happy tracking! 📊💰**
+
